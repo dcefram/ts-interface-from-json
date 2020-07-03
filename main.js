@@ -10,7 +10,7 @@ generateButton.addEventListener("click", () => {
   try {
     const { json, isXml } = parseText(inputText.value);
 
-    const generated = generateTypes(json, "IGeneratedInterface");
+    const generated = generateTypes(json, "GeneratedInterface");
     outputTypesText.querySelector("code").textContent = generated;
 
     if (isXml) {
@@ -57,10 +57,12 @@ function generateTypes(obj, name) {
   const objects = [];
   const parsed = Object.keys(obj).reduce((str, key) => {
     let type = Array.isArray(obj[key]) ? typeof obj[key][0] : typeof obj[key];
+    let prefix = "";
 
     if (type === "object" && obj[key] !== null) {
       type = key.charAt(0).toUpperCase() + key.slice(1, key.length);
       objects.push({ obj: obj[key], type });
+      prefix = "I";
     } else if (obj[key] === null) {
       type = "null";
     }
@@ -68,7 +70,7 @@ function generateTypes(obj, name) {
     type = type === "undefined" ? "any" : type;
     type = Array.isArray(obj[key]) ? type + "[]" : type;
 
-    return `${str}\n  ${key}: ${type};`;
+    return `${str}\n  ${key}: ${prefix}${type};`;
   }, "");
 
   let subTypes = "";
