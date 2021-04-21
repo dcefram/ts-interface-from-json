@@ -1,0 +1,21 @@
+name: build-and-deploy
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12.21.0'
+      - run: yarn
+      - run: yarn build
+      - name: Publish
+        uses: nogsantos/scp-deploy@master
+        with:
+          src: './dist/*'
+          host: ${{ secrets.SSH_HOST }}
+          remote: ${{ secrets.SSH_DIR }}
+          port: ${{ secrets.SSH_PORT }}
+          user: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
