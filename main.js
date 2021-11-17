@@ -1,5 +1,6 @@
-import parser from "fast-xml-parser";
+import { XMLParser } from "fast-xml-parser";
 
+const parser = new XMLParser();
 const inputText = document.getElementById("input");
 const outputTypesText = document.getElementById("output-types");
 const outputJsonText = document.getElementById("output-json");

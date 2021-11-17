@@ -2,19 +2,18 @@
   "name": "sml-xml-parser",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "build": "parcel build index.html --public-url /lab/generate-ts-interface/"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fast-xml-parser": "^3.17.4",
-    "papercss": "^1.6.1"
+    "fast-xml-parser": "^4.0.0-beta.0",
+    "papercss": "^1.8.2"
   },
   "devDependencies": {
-    "cssnano": "^4.1.10",
-    "parcel-bundler": "^1.12.5"
+    "parcel": "^2.0.1"
   }
 }
