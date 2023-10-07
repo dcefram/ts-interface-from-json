@@ -15,5 +15,10 @@
   },
   "devDependencies": {
     "parcel": "^2.0.1"
+  },
+  "targets": {
+    "default": {
+      "publicUrl": "/generate-ts-interfaces"
+    }
   }
 }
